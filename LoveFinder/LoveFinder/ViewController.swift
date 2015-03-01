@@ -37,6 +37,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func okClicked(sender: AnyObject) {
+        let sexText = sex_.titleForSegmentAtIndex(sex_.selectedSegmentIndex)
+        
+        let gregorian = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let components = gregorian?.components(NSCalendarUnit.YearCalendarUnit, fromDate: birthday.date, toDate: NSDate(), options: NSCalendarOptions(0))
+        let age = components?.year
+        
+        let hasHourse = hourse_.on ? "有房" : "没房"
+        
+        show_.text = "\(name_.text), \(sexText!), \(age!)岁, 身高\(height_.text!), \(hasHourse), 求交往！"
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
